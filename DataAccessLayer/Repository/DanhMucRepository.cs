@@ -22,9 +22,9 @@ namespace DAL.Repository
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "DanhMucInsert",
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "[DanhMucInsert]",
                 "@TenDanhMuc", model.TenDanhMuc,
-                "@DanhMucConId" ,model.DanhMucConId
+                "@DanhMucConId", model.DanhMucConId
                 );
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -60,15 +60,15 @@ namespace DAL.Repository
             }
         }
 
-        public List<DanhMuc> GetDatabyID(string id)
+        public List<DanhMuc> GetDatabyAll()
         {
 
             string msgError = "";
             try
             {
                 //gọi danh mục con để tìm được câc cấp
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "DanhMucSelect",
-                     "@Id", id);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "DanhMucSelect"
+                    );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<DanhMuc>().ToList();

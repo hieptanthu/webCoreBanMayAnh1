@@ -15,11 +15,11 @@ namespace Api.BanHang.Controllers
         {
             _Bll = Bll;
         }
-        [Route("get-by-id/{id}")]
+        [Route("get-DanhMucAll")]
         [HttpGet]
-        public List<DanhMuc> GetDatabyID(string id)
+        public List<DanhMuc> GetDatabyAll()
         {
-            return _Bll.GetDatabyID(id);
+            return _Bll.GetDatabyAll();
         }
         [Route("create-DanhMuc")]
         [HttpPost]

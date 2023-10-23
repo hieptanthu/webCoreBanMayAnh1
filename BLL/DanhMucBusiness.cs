@@ -27,9 +27,9 @@ namespace BLL
             return _res.Delete(id);
         }
 
-        public List<DanhMuc> GetDatabyID(string id)
+        public List<DanhMuc> GetDatabyAll()
         {
-            return _res.GetDatabyID(id);
+            return _res.GetDatabyAll();
         }
 
         public bool Update(DanhMuc model)

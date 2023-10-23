@@ -9,8 +9,8 @@ namespace DAL.Repository.Interfaces
 {
     public interface IDanhMucRepository
     {
-        List<DanhMuc> GetDatabyID(string id);
-
+        List<DanhMuc> GetDatabyAll();
+ 
         
         bool Create(DanhMuc model);
         bool Update(DanhMuc model);

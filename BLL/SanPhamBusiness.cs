@@ -33,9 +33,9 @@ namespace BLL
             return _res.GetDatabyID(id);
         }
 
-        public List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId, int ThuongHieuId, int LoaiSanPham)
+        public List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId, int ThuongHieuId, int LoaiSanPham, string slBan, DateTime NgayTao)
         {
-            return _res.Search(pageIndex, pageSize, out total, ten,DanhMucId,ThuongHieuId, LoaiSanPham);
+            return _res.Search(pageIndex, pageSize, out total, ten,DanhMucId,ThuongHieuId, LoaiSanPham, slBan, NgayTao);
         }
 
         public bool Update(SanPham model)

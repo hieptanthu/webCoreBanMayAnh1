@@ -60,6 +60,16 @@ namespace DataAccessLayer
         /// <param name="sprocedureName">Procedure Name</param>
         /// <param name="paramObjects">List Param Objects, Each Item include 'ParamName' and 'ParamValue'</param>
         /// <returns>DataSet result</returns>
+        /// 
+
+        List<DataTable> ExecuteSProcedureReturnDataTables(out string msgError, string sprocedureName, params object[] paramObjects);
+        /// <summary>
+        /// Execute Procedure return DataSet
+        /// </summary>
+        /// <param name="msgError">String.Empty when run query success or Message Error when run query happen issue</param>
+        /// <param name="sprocedureName">Procedure Name</param>
+        /// <param name="paramObjects">List Param Objects, Each Item include 'ParamName' and 'ParamValue'</param>
+        /// <returns>DataSet result</returns>
         DataSet ExecuteSProcedureReturnDataset(out string msgError, string sprocedureName, params object[] paramObjects);
         /// <summary>
         /// Execute Procedure None Query

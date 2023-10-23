@@ -85,7 +85,7 @@ namespace DataAccessLayer.Repository
             }
         }
 
-        public List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId, int ThuongHieuId, int LoaiSanPham)
+        public List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId, int ThuongHieuId, int LoaiSanPham,string slBan,DateTime NgayTao)
         {
             string msgError = "";
             total = 0;
@@ -97,7 +97,10 @@ namespace DataAccessLayer.Repository
                     "@Ten", ten,
                      "@DanhMucId", DanhMucId,
                       "@ThuongHieuId", ThuongHieuId,
-                       "@LoaiSanPham", LoaiSanPham
+                       "@LoaiSanPham", LoaiSanPham,
+                       "@slBan", slBan,
+                        "@NgayTao", NgayTao
+
                     );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

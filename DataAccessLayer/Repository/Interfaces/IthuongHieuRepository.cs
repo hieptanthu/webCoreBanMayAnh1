@@ -5,17 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repository.Interfaces
+namespace DataAccessLayer.Repository.Interfaces
 {
     public interface IthuongHieuRepository
     {
-        ThuongHieu GetDatabyID(string id);
-        bool Create(ThuongHieu model);
-        bool Update(ThuongHieu model);
-
-        bool Delete(string id);
-        List<ThuongHieu> Search(int pageIndex, int pageSize, out long total, string tenThuongHieu);
-
-
+        public bool Create(ThuongHieu model);
+        public bool Delete(string id);
+        public ThuongHieu GetDatabyID(string id);
+        public List<ThuongHieu> Search(int pageIndex, int pageSize, out long total, string tenThuongHieu);
+        public bool Update(ThuongHieu model);
     }
 }

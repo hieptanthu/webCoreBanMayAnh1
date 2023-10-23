@@ -13,8 +13,8 @@ namespace BLL
 {
     public class TaiKhoanQuanLyBusiness : ITaiKhoanQuanLyBusiness
     {
-        private ITaiKhoanQuanLyRepository1 _res;
-        public TaiKhoanQuanLyBusiness(ITaiKhoanQuanLyRepository1 res)
+        private ITaiKhoanQuanLyRepository _res;
+        public TaiKhoanQuanLyBusiness(ITaiKhoanQuanLyRepository res)
         {
             _res = res;
         }
@@ -32,7 +32,7 @@ namespace BLL
 
         public TaiKhoanQuanLy Login(string userName, string password)
         {
-            var user = _res.Login(userName, userName);
+            var user = _res.Login(userName, password);
             //if (user == null)
             //    return null;
             //var tokenHandler = new JwtSecurityTokenHandler();

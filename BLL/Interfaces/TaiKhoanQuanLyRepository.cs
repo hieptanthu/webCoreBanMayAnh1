@@ -1,5 +1,6 @@
 ﻿using DAL.Repository.Interfaces;
 using DataAccessLayer;
+using DataAccessLayer.Repository.Interfaces;
 using MODEL;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,20 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class TaiKhoanQuanLyRepository : ITaiKhoanQuanLyRepository
+    public class thuongHieuRepository : IthuongHieuRepository
     {
         private IDatabaseHelper _dbHelper;
-        public TaiKhoanQuanLyRepository(IDatabaseHelper dbHelper)
+        public thuongHieuRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
-        public bool Create(TaiKhoanQuanLy model)
+        public bool Create(ThuongHieu model)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "TaiKhoanQuanLyUpdate",
-                     "@userName", model.userName,
-                "@password", model.password,
-                "@Email", model.Email,
-                "@soDienThoai", model.soDienThoai
-                );
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "ThuongHieuInsert",
+                "@TenThuongHieu", model.TenThuongHieu);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -44,15 +41,13 @@ namespace DAL.Repository
             
         }
 
-        
-
         public bool Delete(string id)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "TaiKhoanQuanLyDelete",
-                    "@userName",id);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "ThuongHieuDelete",
+                     "@Id", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                
@@ -64,21 +59,39 @@ namespace DAL.Repository
             }
         }
 
-       
-
-        public TaiKhoanQuanLy Login(string username, string password)
+        public ThuongHieu GetDatabyID(string id)
         {
 
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "[sp_login_Quanly]",
-                     "@username", username.Trim(),
-                "@password", password.Trim()
-                );
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "ThuongHieuSelect",
+                     "@Id", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<TaiKhoanQuanLy>().FirstOrDefault();
+                return dt.ConvertTo<ThuongHieu>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public List<ThuongHieu> Search(int pageIndex, int pageSize, out long total, string tenThuongHieu)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "ThuongHieuSearch",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize,
+                    "@TenThuongHieu", tenThuongHieu);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<ThuongHieu>().ToList();
             }
             catch (Exception ex)
             {
@@ -86,22 +99,15 @@ namespace DAL.Repository
             }
         }
 
-       
-        
-
-        public bool Update(TaiKhoanQuanLy model)
+        public bool Update(ThuongHieu model)
         {
 
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "TaiKhoanQuanLyUpdate",
-                     "@Id", model.userName,
-                "@password", model.password,
-                "@Email", model.Email,
-                "@soDienThoai", model.soDienThoai,
-                "@Quyen",model.Quyen
-                );
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "ThuongHieuUpdate",
+                     "@Id", model.Id,
+                "@TenThuongHieu", model.TenThuongHieu);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -113,7 +119,5 @@ namespace DAL.Repository
                 throw ex;
             }
         }
-
-       
     }
 }

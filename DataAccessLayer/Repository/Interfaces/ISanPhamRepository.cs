@@ -14,6 +14,6 @@ namespace DataAccessLayer.Repository.Interfaces
         bool Update(SanPham model);
 
         bool Delete(string id);
-        List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId , int ThuongHieuId,int LoaiSanPham);
+        List<SanPham> Search(int pageIndex, int pageSize, out long total, string ten, int DanhMucId , int ThuongHieuId,int LoaiSanPham, string slBan, DateTime NgayTao);
     }
 }

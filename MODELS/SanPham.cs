@@ -41,7 +41,11 @@ namespace MODEL
         public int? IdDanhMuc { get; set; }
 
         public int? IdThuongHieu { get; set; }
-      
+
+
+        public int? slBan {  get; set; }
+
+
 
 
 

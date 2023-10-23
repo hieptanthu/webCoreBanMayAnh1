@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository.Interfaces
 {
-    public interface ITaiKhoanQuanLyRepository1
+    public interface ITaiKhoanQuanLyRepository
     {
         TaiKhoanQuanLy Login(string userName, string password);
         bool Create(TaiKhoanQuanLy model);

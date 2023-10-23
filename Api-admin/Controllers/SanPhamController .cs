@@ -60,8 +60,12 @@ namespace Api.BanHang.Controllers
                 if (formData.Keys.Contains("ThuongHieuId") && !string.IsNullOrEmpty(Convert.ToString(formData["ThuongHieuId"]))) { DanhMucId = Convert.ToString(formData["ThuongHieuId"]); }
                 string LoaiSanPham = "";
                 if (formData.Keys.Contains("LoaiSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["LoaiSanPham"]))) { DanhMucId = Convert.ToString(formData["LoaiSanPham"]); }
+                string slBan = "";
+                if (formData.Keys.Contains("slBan") && !string.IsNullOrEmpty(Convert.ToString(formData["slBan"]))) { slBan = Convert.ToString(formData["slBan"]); }
+                string NgayTao = "";
+                if (formData.Keys.Contains("NgayTao") && !string.IsNullOrEmpty(Convert.ToString(formData["NgayTao"]))) { NgayTao = Convert.ToString(formData["NgayTao"]); }
                 long total = 0;
-                var data = _Bll.Search(page, pageSize, out total, ten, int.Parse(DanhMucId), int.Parse(ThuongHieuId), int.Parse(LoaiSanPham));
+                var data = _Bll.Search(page, pageSize, out total, ten, int.Parse(DanhMucId), int.Parse(ThuongHieuId), int.Parse(LoaiSanPham),slBan,DateTime.Parse(NgayTao));
                 return Ok(
                     new
                     {

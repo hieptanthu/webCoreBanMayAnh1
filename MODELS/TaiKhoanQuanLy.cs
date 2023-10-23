@@ -15,6 +15,8 @@ namespace MODEL
   
             public string Email { get; set; }
 
+            public int Quyen {  get; set; }
+
              public string token { get; set; }
     }
     }

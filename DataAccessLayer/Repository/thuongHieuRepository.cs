@@ -1,5 +1,6 @@
 ﻿using DAL.Repository.Interfaces;
 using DataAccessLayer;
+using DataAccessLayer.Repository.Interfaces;
 using MODEL;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class thuongHieuRepository : IthuongHieuRepository
+    public class ThuongHieuRepository : IthuongHieuRepository
     {
         private IDatabaseHelper _dbHelper;
-        public thuongHieuRepository(IDatabaseHelper dbHelper)
+        public ThuongHieuRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
